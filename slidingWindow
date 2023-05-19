@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+//finding maximum subarray sum having a fixed length
+
+
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+
+
+
+    vector<int>vec;
+
+    for(int i=0;i<n;i++)
+    {
+        int a;
+        cin>>a;
+        vec.push_back(a);
+
+    }
+
+    int j=0,i=0;
+    int sum=0;
+    int maxi=INT_MIN;
+
+    //using sliding window mechanism
+
+    while(j<n)
+    {
+        sum+=vec[j];
+
+        if(j-i+1<k)
+        {
+            j++;
+        }
+        else if(j-i+1==k)
+        {
+            maxi=max(maxi,sum);
+
+            sum-=vec[i];
+
+            i++;
+
+            j++;
+
+        }
+    }
+
+    cout<<maxi<<endl;
+
+
+
+
+}
