@@ -55,3 +55,68 @@ int main()
 
 
 }
+
+
+//partition array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    vector<int>vec;
+
+    long long  total=0;
+
+    for(int i=0;i<n;i++)
+    {
+        int a;
+        cin>>a;
+
+        total+=a;
+
+        vec.push_back(a);
+
+    }
+
+    if(total%3!=0)
+    {
+        cout<<"0";
+
+        return 0;
+    }
+
+    long long one_third=total/3;
+
+    long long two_third=2*one_third;
+
+    long long one_third_cnt=0;
+
+    long long ans=0;
+
+    long long sum=0;
+
+
+    for(int i=0;i<n-1;i++)
+    {
+        sum+=vec[i];
+
+        if(sum==two_third)
+        {
+            ans+=one_third_cnt;
+        }
+        if(sum==one_third)
+        {
+            one_third_cnt++;      //x+x+x=3x
+                                // 2x+x=3x
+        }
+
+    }
+
+
+    cout<<ans;
+}
+
