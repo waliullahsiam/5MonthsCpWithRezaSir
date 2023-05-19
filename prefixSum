@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+//basic formula l,r
+
+// prefix sum from index l to r is= presum[r]-presum[l-1];
+
+//difference array l,r,v (given)
+
+//step-1 create a dummy array that contains all value with 0;
+//step-2 in the original array just do presum[l]+=v;
+//step-3 in the original array just do presum[r+1]-=v;(so that our value just out of index(r) is not hampered due to the prefix sum operation // 2 0 0 0 -2(l=0 to r=3)
+//step-4 just calculate the prefix sum.
+
+// step-5 add the respective index one by one to the main array and at last you will get the difference array.
+
+
+//https://www.cses.fi/problemset/task/1661/
+
+int main()
+{
+    long long n,x;
+
+    cin>>n>>x;
+
+    vector<long long>vec;
+
+    for(int i=0;i<n;i++)
+    {
+        int a;
+        cin>>a;
+        vec.push_back(a);
+
+    }
+
+
+
+    map<long long,int>mp;
+
+    mp[0]++;
+
+    long long sum=0;
+
+    long long cnt=0;
+
+
+
+    for(int i=0;i<n;i++)
+    {
+        sum+=vec[i];
+
+        if(mp[sum-x]>0)
+        {
+            cnt+=mp[sum-x];
+        }
+
+        mp[sum]++;
+
+    }
+
+
+    cout<<cnt<<endl;
+}
